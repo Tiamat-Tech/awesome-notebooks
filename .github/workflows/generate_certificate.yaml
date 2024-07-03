@@ -29,7 +29,7 @@ jobs:
         
       - name: Show request result
         run: |
-          echo ${{ fromJson(steps.webhook.outputs.output).data.bio }}
+          echo ${{ fromJson(steps.webhook.outputs.output).bio }}
 
       - name: Create Temporary Output folder
         run: | 
@@ -38,14 +38,14 @@ jobs:
       - name: Get required variables And run script
         env: 
           pr_name: ${{ github.event.pull_request.title }}
-          org_profile_url: ${{ fromJson(steps.webhook.outputs.output).data.html_url }}
+          org_profile_url: ${{ fromJson(steps.webhook.outputs.output).html_url }}
           repo_name: ${{ github.event.repository.name }}
           contributor_name: ${{ github.event.pull_request.user.login }} 
           issue_title: ${{ github.event.pull_request.head.ref }}
           issue_number: ${{ github.event.pull_request.number }}
           date: ${{ github.event.pull_request.created_at }}
-          logo_url: ${{ fromJson(steps.webhook.outputs.output).data.avatar_url }}
-          org_bio: ${{ fromJson(steps.webhook.outputs.output).data.bio }}
+          logo_url: ${{ fromJson(steps.webhook.outputs.output).avatar_url }}
+          org_bio: ${{ fromJson(steps.webhook.outputs.output).bio }}
           
         run: |
             pip install bs4
